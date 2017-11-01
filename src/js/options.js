@@ -6,31 +6,26 @@ Vue.config.devtools = false
 var app = new Vue({
   el: '#app',
   data: {
-		favoriteColor: 'red',
-		likesColor: true,
+		favorUnit: 'CNY',
 		statusText: ''
   },
   methods: {
     saveOptions() {
+      Storage.setValue('favorUnit', this.favorUnit)
       chrome.storage.sync.set({
-        favoriteColor: this.favoriteColor,
-        likesColor: this.likesColor
+        favorUnit: this.favorUnit
       }, async () => {
-        this.statusText = 'Options saved.';
+        this.statusText = '选项已保存';
         await sleep(700)
         this.statusText = ''
-        // setTimeout(() => {
-          // this.statusText = ''
-        // }, 750)
       });
     },
     restoreOptions() {
       chrome.storage.sync.get({
-        favoriteColor: this.favoriteColor, // 设置默认值，不需要也可用数组
-        likesColor: this.likesColor
+        favorUnit: this.favorUnit, // 设置默认值，不需要也可用数组
       }, (items) => {
-        this.favoriteColor = items.favoriteColor;
-        this.likesColor = items.likesColor;
+        this.favorUnit = items.favorUnit;
+        Storage.setValue('favorUnit', this.favorUnit)
       });
     },
     onChange(name, e) {
@@ -45,21 +40,14 @@ var app = new Vue({
   render (h) { // <-- h must be in scope
     return (
       <div class='container'>
-        Favorite color:
-        <select domPropsValue={this.favoriteColor} onChange={this.onChange.bind(this, 'favoriteColor')}>
-          <option value="red">red</option>
-          <option value="green">green</option>
-          <option value="blue">blue</option>
-          <option value="yellow">yellow</option>
+        价格显示：
+        <select domPropsValue={this.favorUnit} onChange={this.onChange.bind(this, 'favorUnit')}>
+          <option value="CNY">人民币</option>
+          <option value="USD">美元</option>
         </select>
 
-        <label>
-          <input type="checkbox" checked={this.likesColor} onChange={() => this.likesColor = !this.likesColor}/>
-          I like colors.
-        </label>
-
-        <div>{this.statusText}</div>
-        <button onClick={this.saveOptions.bind(this)}>Save</button>
+        <button onClick={this.saveOptions.bind(this)} class="saveBtn">保存</button>
+        <span>{this.statusText}</span>
       </div>
     )
   }

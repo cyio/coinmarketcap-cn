@@ -12,8 +12,8 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 const Urls = {
-  feixiaohao: 'http://m.feixiaohao.com',
-  coinmarketcap: 'https://coinmarketcap.com/#CNY'
+  feixiaohao: 'http://m.feixiaohao.com/',
+  coinmarketcap: 'https://coinmarketcap.com/'
 }
 
 var app = new Vue({
@@ -27,9 +27,8 @@ var app = new Vue({
   computed: {
   },
   mounted () {
-		Storage.setValue('ver', '1.0')
-    port.send({act: 'say hello'})
-    this.currentUrl = Urls.feixiaohao
+    this.currentUrl = Urls.feixiaohao + '#' + Storage.getValue('favorUnit', 'CNY')
+    console.log(this.currentUrl)
     setTimeout(() => this.showPreloader = false, 400) 
   },
   render (h) { // <-- h must be in scope
