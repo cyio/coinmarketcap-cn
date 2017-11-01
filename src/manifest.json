@@ -20,7 +20,7 @@
     "webRequestBlocking"
   ],
   "web_accessible_resources": [ "js/*", "html/*", "css/*", "images/*" ],
-  "name": "<%= package.name %>",
+  "name": "<%= package.extensionName %>",
   "version": "<%= package.version %>",
   "description": "<%= package.description %>"
 }
