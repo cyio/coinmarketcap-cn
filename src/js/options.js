@@ -7,21 +7,17 @@ var app = new Vue({
   el: '#app',
   data: {
 		favorUnit: 'CNY',
-		statusText: ''
   },
   methods: {
-    async saveOptions() {
+    saveOptions() {
       Storage.setValue('favorUnit', this.favorUnit)
-      this.statusText = '选项已保存'
-      await sleep(700)
-      this.statusText = ''
     },
     restoreOptions() {
-      this.favorUnit = items.favorUnit
-      Storage.setValue('favorUnit', this.favorUnit)
+      this.favorUnit = Storage.getValue('favorUnit', 'CNY')
     },
     onChange(name, e) {
 			this[name] = e.target.value
+			this.saveOptions()
     },
   },
   computed: {
@@ -31,15 +27,15 @@ var app = new Vue({
   },
   render (h) { // <-- h must be in scope
     return (
-      <div class='container'>
+      <div class="container">
         价格显示：
-        <select domPropsValue={this.favorUnit} onChange={this.onChange.bind(this, 'favorUnit')}>
-          <option value="CNY">人民币</option>
-          <option value="USD">美元</option>
-        </select>
-
-        <button onClick={this.saveOptions.bind(this)} class="saveBtn">保存</button>
-        <span>{this.statusText}</span>
+        <input type="radio" checked={this.favorUnit === 'CNY'} value="CNY" name="unit" onChange={this.onChange.bind(this, 'favorUnit')} />
+        <label for="unit">人民币</label>
+        <input type="radio" checked={this.favorUnit === 'USD'} value="USD" name="unit" onChange={this.onChange.bind(this, 'favorUnit')} />
+        <label for="unit">美元</label>
+        <div class="footer">
+          <a href="https://github.com/cyio/coinmarketcap-cn">源代码</a>
+        </div>
       </div>
     )
   }

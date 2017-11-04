@@ -11,6 +11,9 @@
     "js": [ "js/content.js" ],
 		"all_frames": true
   }],
+	"options_ui": {
+		"page": "html/options.html"
+	},
   "permissions": [
     "notifications",
     "cookies",

@@ -1,4 +1,16 @@
+.container {
+  min-height: 100px;
+  padding: 20px;
+}
 .saveBtn {
 	margin-left: 10px;
 	margin-right: 10px;
+}
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.footer a {
+  color: gray;
 }
