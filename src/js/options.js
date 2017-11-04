@@ -10,23 +10,15 @@ var app = new Vue({
 		statusText: ''
   },
   methods: {
-    saveOptions() {
+    async saveOptions() {
       Storage.setValue('favorUnit', this.favorUnit)
-      chrome.storage.sync.set({
-        favorUnit: this.favorUnit
-      }, async () => {
-        this.statusText = '选项已保存';
-        await sleep(700)
-        this.statusText = ''
-      });
+      this.statusText = '选项已保存'
+      await sleep(700)
+      this.statusText = ''
     },
     restoreOptions() {
-      chrome.storage.sync.get({
-        favorUnit: this.favorUnit, // 设置默认值，不需要也可用数组
-      }, (items) => {
-        this.favorUnit = items.favorUnit;
-        Storage.setValue('favorUnit', this.favorUnit)
-      });
+      this.favorUnit = items.favorUnit
+      Storage.setValue('favorUnit', this.favorUnit)
     },
     onChange(name, e) {
 			this[name] = e.target.value

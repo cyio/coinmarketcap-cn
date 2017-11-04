@@ -1,12 +1,5 @@
 import Vue from 'vue'
-import { mainConnector, Storage } from './modules/utils'
-
-var port  = new mainConnector();
-port.name = "chrome-extension-skeleton";
-port.init();
-port.onMessage((msg) => {
-  // console.log('frontend msg', msg)
-})
+import { Storage } from './modules/utils'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false

@@ -1,10 +1,11 @@
 .DS_Store
-mykey.pem
+*.pem
 node_modules
 npm-debug.log
 build/*.crx
 build/dev
 build/prod
+build/*.pem
 build/updates.xml
 build/*.zip
 .tmp
