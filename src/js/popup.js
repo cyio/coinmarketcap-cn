@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Storage } from './modules/utils'
+import { Storage, openPopupInNewWin } from './modules/utils'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
@@ -13,7 +13,8 @@ var app = new Vue({
   el: '#app',
   data: {
     currentUrl: '',
-    showPreloader: true
+    showPreloader: true,
+    isPopupWindow: false
   },
   methods: {
   },
@@ -21,14 +22,17 @@ var app = new Vue({
   },
   mounted () {
     this.currentUrl = Urls.feixiaohao + '#' + Storage.getValue('favorUnit', 'CNY')
-    console.log(this.currentUrl)
     setTimeout(() => this.showPreloader = false, 400) 
+    this.isPopupWindow = location.href.includes('is_new_win=true')
   },
   render (h) { // <-- h must be in scope
     return (
       <div id='app'>
         { this.showPreloader && <div class="preloader"></div> }
         <iframe id="webpage" class={this.showPreloader && 'init'} src={this.currentUrl} width="100%" height="100%" frameborder="0"></iframe>
+        {
+          !this.isPopupWindow && <button id="btnNewWinPopup" title="弹出到新窗口" onClick={() => openPopupInNewWin()}>弹出</button>
+        }
       </div>
     )
   }

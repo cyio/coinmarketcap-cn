@@ -16,13 +16,15 @@
 html, body {
   position: relative;
   overflow-x: hidden;
-  width: 350px;
-  height: 525px;
+  min-width: 350px;
+  min-height: 1200px;
 }
 body, #app {
   margin: 0;
-  height: 100%;
+  width: 100%;
 	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
 }
 .main {
   height: 100%;
@@ -34,10 +36,19 @@ body, #app {
   display: block;
   opacity: 0;
 }
+#btnNewWinPopup {
+  position: fixed;
+  left: 45%;
+  opacity: 0.4;
+  height: 25px;
+}
+#btnNewWinPopup:hover {
+  opacity: 1;
+}
 #app .preloader {
   position: absolute;
   left: 45%;
-  top: 45%;
+  top: 300px;
   width: 30px;
   height: 30px;
 }
