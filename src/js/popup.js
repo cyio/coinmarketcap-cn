@@ -24,6 +24,10 @@ var app = new Vue({
     this.currentUrl = Urls.feixiaohao + '#' + Storage.getValue('favorUnit', 'CNY')
     setTimeout(() => this.showPreloader = false, 400) 
     this.isPopupWindow = location.href.includes('is_new_win=true')
+    let enableAutoRefresh = Storage.getValue('enableAutoRefresh', false)
+    if (this.isPopupWindow && enableAutoRefresh) {
+      setInterval(() => location.reload(), 15000)
+    }
   },
   render (h) { // <-- h must be in scope
     return (
