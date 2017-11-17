@@ -98,7 +98,7 @@ export function openPopupInNewWin(windowId) {
 		if (windowId) {
 			url += '&windowId=' + windowId;
 		}
-		getBackgroundView().new_win_popup.window = window.open(url, '163music', 'width=410,height=660' );
+		getBackgroundView().new_win_popup.window = window.open(url, 'coincap.io', 'width=550,height=660' );
 	});
 }
 // -- open popup window -- end

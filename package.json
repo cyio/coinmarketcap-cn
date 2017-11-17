@@ -1,7 +1,7 @@
 {
   "name": "Coinmarketcap-CN",
   "extensionName": "Cryptocurrency Market Capitalizations",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "easy to check crypto currency data",
   "engines": {
     "node": "7.0.0",
