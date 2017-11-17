@@ -21,7 +21,7 @@ var app = new Vue({
   computed: {
   },
   mounted () {
-    this.currentUrl = Urls.feixiaohao + '#' + Storage.getValue('favorUnit', 'CNY')
+    this.currentUrl = Urls[Storage.getValue('site', 'coinmarketcap')] + '#' + Storage.getValue('favorUnit', 'CNY')
     setTimeout(() => this.showPreloader = false, 400) 
     this.isPopupWindow = location.href.includes('is_new_win=true')
     let enableAutoRefresh = Storage.getValue('enableAutoRefresh', false)
@@ -35,7 +35,7 @@ var app = new Vue({
         { this.showPreloader && <div class="preloader"></div> }
         <iframe id="webpage" class={this.showPreloader && 'init'} src={this.currentUrl} width="100%" height="100%" frameborder="0"></iframe>
         {
-          !this.isPopupWindow && <button id="btnNewWinPopup" title="弹出到新窗口" onClick={() => openPopupInNewWin()}>弹出</button>
+          !this.isPopupWindow && <button id="btnNewWinPopup" title="popup to new window" onClick={() => openPopupInNewWin()}>popup</button>
         }
       </div>
     )

@@ -7,7 +7,7 @@
   },
   "background": { "scripts": ["js/background.js"] },
   "content_scripts": [{
-    "matches": [ "http://m.feixiaohao.com/*"],
+    "matches": [ "http://m.feixiaohao.com/*", "https://coinmarketcap.com/*"],
     "js": [ "js/content.js" ],
 		"all_frames": true
   }],

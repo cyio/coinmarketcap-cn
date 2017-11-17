@@ -6,16 +6,19 @@ Vue.config.devtools = false
 var app = new Vue({
   el: '#app',
   data: {
-		favorUnit: 'CNY',
+		favorUnit: 'USD',
+		site:'coinmarketcap',
 		enableAutoRefresh: false,
   },
   methods: {
     saveOptions() {
       Storage.setValue('favorUnit', this.favorUnit)
+      Storage.setValue('site', this.site)
       Storage.setValue('enableAutoRefresh', this.enableAutoRefresh)
     },
     restoreOptions() {
-      this.favorUnit = Storage.getValue('favorUnit', 'CNY')
+      this.favorUnit = Storage.getValue('favorUnit', 'USD')
+      this.site = Storage.getValue('site', 'coinmarketcap')
       this.enableAutoRefresh = Storage.getValue('enableAutoRefresh', false)
     },
     onChange(name, e) {
@@ -36,18 +39,25 @@ var app = new Vue({
     return (
       <div class="container">
         <div class="row">
-          价格显示：
-          <input type="radio" checked={this.favorUnit === 'CNY'} value="CNY" name="unit" onChange={this.onChange.bind(this, 'favorUnit')} />
-          <label for="unit">人民币</label>
+          Site：
+          <input type="radio" checked={this.site === 'coinmarketcap'} value="coinmarketcap" name="site" onChange={this.onChange.bind(this, 'site')} />
+          <label for="site">coinmarketcap</label>
+          <input type="radio" checked={this.site === 'feixiaohao'} value="feixiaohao" name="site" onChange={this.onChange.bind(this, 'site')} />
+          <label for="site">非小号</label>
+        </div>
+        <div class="row">
+          Price Unit：
           <input type="radio" checked={this.favorUnit === 'USD'} value="USD" name="unit" onChange={this.onChange.bind(this, 'favorUnit')} />
-          <label for="unit">美元</label>
+          <label for="unit">$</label>
+          <input type="radio" checked={this.favorUnit === 'CNY'} value="CNY" name="unit" onChange={this.onChange.bind(this, 'favorUnit')} />
+          <label for="unit">￥</label>
         </div>
         <div class="row">
           <input type="checkbox" name="enableAutoRefresh" checked={this.enableAutoRefresh}  onChange={this.toggleOption.bind(this, 'enableAutoRefresh')} />
-          <label for="unit">启用自动刷新（15秒间隔，仅弹出窗口中有效）</label>
+          <label for="unit">Auto Refresh（15 seconds duration, only work in the popup window）</label>
         </div>
         <div class="footer">
-          <a href="https://github.com/cyio/coinmarketcap-cn">源代码</a>
+          <a href="https://github.com/cyio/coinmarketcap-cn">source code</a>
         </div>
       </div>
     )
