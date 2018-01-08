@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import { Storage, openPopupInNewWin } from './modules/utils'
+import {Storage, openPopupInNewWin} from './modules/utils'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
 const Urls = {
-  feixiaohao: 'http://m.feixiaohao.com/',
-  coinmarketcap: 'https://coinmarketcap.com/'
+  feixiaohao: 'https://m.feixiaohao.com/',
+  coinmarketcap: 'https://coinmarketcap.com/',
 }
 
 var app = new Vue({
@@ -14,22 +14,31 @@ var app = new Vue({
   data: {
     currentUrl: '',
     showPreloader: true,
-    isPopupWindow: false
+    isPopupWindow: false,
   },
-  methods: {
+  methods: {},
+  computed: {},
+  mounted() {
+    this.currentUrl =
+      Urls[Storage.getValue('site', 'coinmarketcap')] +
+      '#' +
+      Storage.getValue('favorUnit', 'CNY')
+    setTimeout(() => (this.showPreloader = false), 400)
   },
-  computed: {
-  },
-  mounted () {
-    this.currentUrl = Urls[Storage.getValue('site', 'coinmarketcap')] + '#' + Storage.getValue('favorUnit', 'CNY')
-    setTimeout(() => this.showPreloader = false, 400) 
-  },
-  render (h) { // <-- h must be in scope
+  render(h) {
+    // <-- h must be in scope
     return (
-      <div id='app'>
-        { this.showPreloader && <div class="preloader"></div> }
-        <iframe id="webpage" class={this.showPreloader && 'init'} src={this.currentUrl} width="100%" height="100%" frameborder="0"></iframe>
+      <div id="app">
+        {this.showPreloader && <div class="preloader" />}
+        <iframe
+          id="webpage"
+          class={this.showPreloader && 'init'}
+          src={this.currentUrl}
+          width="100%"
+          height="100%"
+          frameborder="0"
+        />
       </div>
     )
-  }
+  },
 })
