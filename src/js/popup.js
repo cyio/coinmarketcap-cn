@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import {Storage, openPopupInNewWin} from './modules/utils'
+import { Storage, openPopupInNewWin } from './modules/utils'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
 const Urls = {
   feixiaohao: 'https://m.feixiaohao.com/',
-  coinmarketcap: 'https://coinmarketcap.com/',
+  coinmarketlite: 'https://coin.bch123.org/',
 }
 
 var app = new Vue({
@@ -19,10 +19,7 @@ var app = new Vue({
   methods: {},
   computed: {},
   mounted() {
-    this.currentUrl =
-      Urls[Storage.getValue('site', 'coinmarketcap')] +
-      '#' +
-      Storage.getValue('favorUnit', 'CNY')
+    this.currentUrl = Urls[Storage.getValue('site', 'coinmarketlite')]
     setTimeout(() => (this.showPreloader = false), 400)
   },
   render(h) {
