@@ -1,0 +1,11 @@
+{
+  "ext_name": {
+    "message": "Cryptocurrency Market Capitalizations"
+  },
+  "ext_desc": {
+    "message": "easy to check crypto currency market data"
+  },
+  "contextmenu": {
+    "message": "Search BCH123.org for \"%s\""
+  }
+}

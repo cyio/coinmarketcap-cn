@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
-  "icons": { "128": "images/icon.png" },
+  "default_locale": "en",
+  "icons": { "16": "images/icon.png", "128": "images/icon.png" },
   "browser_action": {
     "default_icon": "images/icon.png",
     "default_popup": "html/popup.html"
@@ -17,12 +18,13 @@
   "permissions": [
     "notifications",
     "cookies",
-		"storage",
+    "storage",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "contextMenus"
   ],
   "web_accessible_resources": [ "js/*", "html/*", "css/*", "images/*" ],
-  "name": "<%= package.extensionName %>",
-  "version": "<%= package.version %>",
-  "description": "<%= package.description %>"
+  "name": "__MSG_ext_name__",
+  "description": "__MSG_ext_desc__",
+  "version": "<%= package.version %>"
 }

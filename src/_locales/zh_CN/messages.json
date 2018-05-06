@@ -1,0 +1,11 @@
+{
+  "ext_name": {
+    "message": "加密货币市值"
+  },
+  "ext_desc": {
+    "message": "方便查看加密货币行情"
+  },
+  "contextmenu": {
+    "message": "在 BCH123.org 查看 '%s'"
+  }
+}
